@@ -1,0 +1,124 @@
+---
+import { places } from "../data/places";
+
+const mapCategories = [
+  { name: "Activities", icon: "🏃" },
+  { name: "Festivals & Events", icon: "🎉" },
+  { name: "Food & Beverage", icon: "🍛" },
+  { name: "Shopping", icon: "🛍️" },
+];
+---
+
+<nav class="sticky top-0 z-[100] bg-white shadow-md">
+  <div class="max-w-[1200px] mx-auto px-4 flex items-center justify-between h-[70px]">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 font-bold text-base sm:text-lg text-orange-600">
+      <span class="text-2xl">🏛️</span>
+      <span class="md:inline">Bangalore Tourism</span>
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-8">
+
+      <!-- Home -->
+      <a href="/" class="text-gray-700 hover:text-orange-600 transition">
+        Home
+      </a>
+
+      <!-- Featured (smooth scroll) -->
+      <a
+        href="/#featured"
+        class="text-gray-700 hover:text-orange-600 transition"
+      >
+        Featured Attractions
+      </a>
+
+      <!-- Map (smooth scroll) -->
+      <a
+        href="/#map"
+        class="text-gray-700 hover:text-orange-600 transition"
+      >
+        Explore Locations
+      </a>
+
+      <!-- Places Dropdown -->
+      <div class="relative group">
+        <a
+          href="/places"
+          class="flex items-center gap-1 text-gray-700 hover:text-orange-600"
+        >
+          Places 
+          <span class="text-[10px]">▼</span>
+        </a>
+        <div
+          class="absolute right-0 mt-2 max-h-[260px] md:max-h-[300px]
+            overflow-y-auto min-w-[220px]
+            bg-white rounded-md shadow-lg p-2
+            opacity-0 invisible group-hover:opacity-100 group-hover:visible
+            transition-all duration-200"
+        >
+          {places.map(place => (
+            <a
+              href={`/place/${place.slug}`}
+              class="block px-3 py-2 rounded text-sm text-gray-700
+                hover:bg-gray-100 hover:text-orange-600"
+            >
+              {place.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mobile Button -->
+    <button
+      class="md:hidden flex flex-col gap-1 p-2"
+      aria-label="Toggle menu"
+      onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
+    >
+      <span class="w-6 h-[2px] bg-gray-800 rounded"></span>
+      <span class="w-6 h-[2px] bg-gray-800 rounded"></span>
+      <span class="w-6 h-[2px] bg-gray-800 rounded"></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+     class="hidden md:hidden bg-white border-t
+      px-4 py-3 space-y-2">
+
+    <a href="/" class="block px-3 py-2 rounded hover:bg-gray-100">
+      Home
+    </a>
+
+    <a href="/#featured" class="block px-3 py-2 rounded hover:bg-gray-100">
+      Featured Attractions
+    </a>
+
+    <a href="/#map" class="block px-3 py-2 rounded hover:bg-gray-100">
+      Explore Locations
+    </a>
+
+    <div class="pt-3 border-t">
+      <a
+        href="/places"
+        class="block px-3 py-2 font-semibold hover:bg-gray-100"
+      >
+        Places
+      </a>
+
+      {places.map(place => (
+        <a
+          href={`/place/${place.slug}`}
+          class="block px-6 py-2 text-sm hover:bg-gray-100"
+        >
+          {place.name}
+        </a>
+      ))}
+    </div>
+
+  </div>
+</nav>

@@ -1,0 +1,77 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { places } from "../../data/places.js";
+
+export async function getStaticPaths() {
+  return places.map((place) => ({
+    params: { slug: place.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const place = places.find((p) => p.slug === slug);
+
+if (!place) {
+  return Astro.redirect("/404");
+}
+---
+<MainLayout
+  title={`${place.name} – Bangalore Tourism`}
+  description={`${place.name} in Bangalore – ${place.shortDescription}`}
+  image={place.image}
+>
+  <!-- HERO -->
+<section class="relative">
+  <div class="relative h-[60vh] min-h-[420px]">
+    <img
+      src={place.image || "/placeholder.svg"}
+      alt={place.name}
+      class="h-full w-full object-cover"
+    />
+
+    <div class="absolute inset-0 bg-black/50" />
+  </div>
+
+  <!-- HERO CONTENT aligned with article -->
+  <div class="absolute inset-0 flex items-end">
+    <div class="mx-auto w-full max-w-4xl px-6 pb-10">
+      <span
+        class="mb-3 inline-block rounded-full
+               bg-orange-600/90 px-4 py-1
+               text-sm font-medium text-white"
+      >
+        {place.category}
+      </span>
+
+      <h1 class="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+        {place.name}
+      </h1>
+
+      <p class="max-w-2xl text-base sm:text-lg text-gray-200">
+        {place.shortDescription}
+      </p>
+    </div>
+  </div>
+</section>
+
+
+  <article class="mx-auto max-w-4xl px-6 py-14">
+  <p class="leading-relaxed text-base sm:text-lg text-gray-700">
+    {place.description}
+  </p>
+
+  <div class="mt-12 text-center">
+    <a
+      href="/places"
+      class="inline-flex items-center gap-2
+             rounded-lg bg-orange-600
+             px-6 py-3 font-semibold text-white
+             hover:bg-orange-700"
+    >
+      ← Explore More Places
+    </a>
+  </div>
+</article>
+
+
+</MainLayout>

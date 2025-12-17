@@ -1,0 +1,66 @@
+---
+const {
+  title = "Bangalore Tourism",
+  description = "Explore Bangalore – gardens, heritage sites, food, culture, and experiences in the Garden City of India.",
+  image = "/og-bangalore.jpg"
+} = Astro.props;
+
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+
+    <!-- Primary SEO -->
+    <meta name="description" content={description} />
+
+    <!-- Open Graph (Sharing) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Geo Targeting -->
+    <meta name="geo.region" content="IN-KA" />
+    <meta name="geo.placename" content="Bangalore" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body class="w-full overflow-x-hidden">
+    <div class="app">
+      <Navbar client:load />
+
+      <main class="main-content">
+        <slot />
+      </main>
+
+      <Footer client:load />
+    </div>
+  </body>
+</html>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .main-content {
+    flex: 1;
+  }
+</style>

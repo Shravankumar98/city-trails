@@ -1,43 +1,120 @@
-# Astro Starter Kit: Minimal
+````markdown
+# Bangalore Tourism Website
 
-```sh
-npm create astro@latest -- --template minimal
+A modern, interactive tourism website for Bangalore built with **Astro**, **React**, and **Tailwind CSS**.
+
+**Features:**
+
+- Hero section with dynamic featured place  
+- Category-filtered places  
+- Featured attractions carousel  
+- Interactive map with category filters and custom popup confirmation  
+- Mobile-first responsive design  
+
+---
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js >= 18
+- npm >= 9 (or yarn)
+
+### Installation
+
+```bash
+git clone <your-repo-url>
+cd <your-repo-folder>
+npm install
+````
+
+### Development
+
+```bash
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+* Open `http://localhost:3000` to view the website
 
-## 🚀 Project Structure
+### Production Build
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Adding Content
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Places
 
-## 🧞 Commands
+Update `src/data/places.js`:
 
-All commands are run from the root of the project, from a terminal:
+```js
+export const places = [
+  {
+    name: "Lalbagh Botanical Garden",
+    slug: "lalbagh-botanical-garden",
+    category: "Gardens",
+    image: "/images/lalbagh.jpg",
+    shortDescription: "Historic botanical garden with centuries-old trees.",
+    description: "Full description of the place..."
+  },
+  // add more places
+];
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Map Locations
 
-## 👀 Want to learn more?
+Update `src/data/mapLocations.js` with location objects including `id`, `name`, `category`, and `description`.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## Project Structure
+
+```
+src/
+├─ components/
+│  ├─ HeroSection.astro
+│  ├─ FeaturedCarousel.jsx
+│  ├─ InteractiveMap.jsx
+│  ├─ CategoryFilter.jsx
+│  ├─ PlaceGrid.astro
+│  ├─ PlaceCard.astro
+│  └─ ui/
+│     ├─ Button.jsx
+│     ├─ Badge.jsx
+│     └─ Section.astro
+├─ data/
+│  ├─ places.js
+│  ├─ carouselItems.js
+│  └─ mapLocations.js
+├─ layouts/
+│  └─ MainLayout.astro
+├─ pages/
+│  ├─ index.astro
+│  └─ places/
+│     ├─ [category].astro
+│     └─ [slug].astro
+└─ utils/
+   └─ random.js
+```
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create a branch (`git checkout -b feature/xyz`)
+3. Make changes and commit (`git commit -m "Add feature"`)
+4. Push (`git push origin feature/xyz`)
+5. Open a Pull Request
+
+---
+
+## License
+
+**MIT License**
+
+```

@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+
+:root {
+  /* Brand identity */
+  --brand-primary: #1f4e79;   /* Government blue */
+  --brand-accent: #c58917;    /* Heritage gold */
+  --brand-muted: #f5f7fa;
+
+  /* Text */
+  --text-heading: #1a1a1a;
+  --text-body: #555555;
+  --text-light: #ffffff;
+
+  /* UI */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* Shadows */
+  --shadow-sm: 0 6px 18px rgba(0,0,0,0.08);
+  --shadow-md: 0 12px 30px rgba(0,0,0,0.12);
+
+  /* Spacing */
+  --section-padding: 5rem;
+  
+  /* Section surfaces (NEW) */
+  --surface-hero-overlay: rgba(0, 0, 0, 0.6);
+
+  --surface-featured: #fff7ed;      /* warm heritage */
+  --surface-map: #f0f6fb;           /* civic blue tint */
+  --surface-places: #ffffff;        /* clean content */
+  --surface-divider: #e5e7eb;
+}
+
+
+
+/* ===============================
+   BASE STYLES
+================================= */
+
+body {
+  @apply bg-white text-gray-700 leading-relaxed;
+}
+
+/* ===============================
+   UI UTILITIES
+================================= */
+
+.section {
+  @apply max-w-7xl mx-auto px-4 py-16;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-center mb-4;
+}
+
+.section-subtitle {
+  @apply text-center text-gray-600 max-w-2xl mx-auto mb-10;
+}
+
+/* ===============================
+   BUTTON SYSTEM
+================================= */
+
+.btn {
+  @apply inline-flex items-center justify-center font-semibold rounded-md transition;
+}
+
+.btn-primary {
+  background: var(--brand-primary);
+  @apply text-white hover:opacity-90;
+}
+
+.btn-outline {
+  @apply border border-gray-300 text-gray-700 hover:bg-gray-100;
+}
+
+.btn-sm {
+  @apply px-3 py-1.5 text-sm;
+}
+
+.btn-md {
+  @apply px-5 py-2.5 text-sm;
+}
+
+.btn-lg {
+  @apply px-7 py-3 text-base;
+}
+
+/* ===============================
+   BADGE
+================================= */
+
+.badge {
+  background: var(--brand-light);
+  color: var(--brand-primary);
+  @apply inline-block rounded-full px-3 py-1 text-xs font-medium;
+}
+
+/* ===============================
+   AVATAR
+================================= */
+
+.avatar {
+  @apply rounded-full object-cover;
+}
+
+.avatar-sm { @apply w-8 h-8; }
+.avatar-md { @apply w-10 h-10; }
+.avatar-lg { @apply w-14 h-14; }
+.avatar-xl { @apply w-20 h-20; }

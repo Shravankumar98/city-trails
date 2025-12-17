@@ -1,16 +1,49 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro";
+import Section from "../components/ui/Section.astro";
+import Button from "../components/ui/Button.jsx";
+import FeaturedCarousel from "../components/FeaturedCarousel.jsx";
+import InteractiveMap from "../components/InteractiveMap.jsx";
+import HeroSection from "../components/HeroSection.astro";
+import AboutSection from "../components/AboutSection.astro";
+import CategoryFilter from "../components/CategoryFilter.jsx";
 
+import { places } from "../data/places.js";
+import { getRandomItems } from "../utils/random";
+
+const heroPlace = places[Math.floor(Math.random() * places.length)];
+const heroImage = heroPlace.image;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout
+  title="Bangalore Tourism – Explore the Garden City"
+  description="Official tourism guide to Bangalore covering attractions, culture, parks, food, and heritage."
+>
+
+  <!-- HERO -->
+  <HeroSection heroImage={heroImage} />
+  <!-- ABOUT -->
+  <AboutSection />
+
+  <!-- FEATURED -->
+  <Section id="featured" title="Featured Attractions" subtitle="Signature experiences of Bangalore" background="featured">
+    <FeaturedCarousel client:load />
+  </Section>
+
+  <!-- MAP -->
+  <Section id="map" title="Explore the City" subtitle="Navigate attractions across Bangalore" background="map">
+    <InteractiveMap client:load />
+  </Section>
+
+  <!-- PLACES WITH CATEGORY FILTER -->
+  <Section id="places" title="Must-Visit Places" subtitle="Historic landmarks, gardens, and cultural icons" background="places">
+  <CategoryFilter client:load places={places.slice(0,6)} />
+  <div class="mt-10 text-center">
+    <Button href="/places" variant="primary">
+      Discover More Places
+    </Button>
+  </div>
+</Section>
+
+
+</MainLayout>
