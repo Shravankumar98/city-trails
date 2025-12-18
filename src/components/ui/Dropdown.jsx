@@ -51,7 +51,7 @@ export default function Dropdown({ label, href = "#", items = [] }) {
       {/* Dropdown content */}
       <div
         ref={listRef}
-        className={`absolute right-0 mt-[27] max-h-[260px] md:max-h-[300px]
+        className={`absolute right-0 max-h-[260px] md:max-h-[300px]
             overflow-y-auto min-w-[220px]
             bg-white rounded-md shadow-mt p-2  /* <-- shadow here */
             transition-all duration-200
