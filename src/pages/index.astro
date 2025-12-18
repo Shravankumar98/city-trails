@@ -17,31 +17,20 @@ const heroImage = heroPlace.image;
   title="Bangalore Tourism – Explore the Garden City"
   description="Official tourism guide to Bangalore covering attractions, culture, parks, food, and heritage."
 >
-
-  <!-- HERO -->
   <HeroSection heroImage={heroImage} />
-  <!-- ABOUT -->
   <AboutSection />
-
-  <!-- FEATURED -->
   <Section id="featured" title="Featured Attractions" subtitle="Signature experiences of Bangalore" background="featured">
     <FeaturedCarousel client:load />
   </Section>
-
-  <!-- MAP -->
   <Section id="map" title="Explore the City" subtitle="Navigate attractions across Bangalore" background="map">
     <InteractiveMap client:load />
   </Section>
-
-  <!-- PLACES WITH CATEGORY FILTER -->
   <Section id="places" title="Must-Visit Places" subtitle="Historic landmarks, gardens, and cultural icons" background="places">
-  <CategoryFilter client:load places={places.slice(0,6)} />
-  <div class="mt-10 text-center">
-    <Button href="/places" variant="primary">
-      Discover More Places
-    </Button>
-  </div>
-</Section>
-
-
+    <CategoryFilter client:load places={places.slice(0,6)} />
+    <div class="mt-10 text-center">
+      <Button href="/places" variant="primary">
+        Discover More Places
+      </Button>
+    </div>
+  </Section>
 </MainLayout>

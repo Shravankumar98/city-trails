@@ -1,124 +1,154 @@
 ---
 import { places } from "../data/places";
-
-const mapCategories = [
-  { name: "Activities", icon: "🏃" },
-  { name: "Festivals & Events", icon: "🎉" },
-  { name: "Food & Beverage", icon: "🍛" },
-  { name: "Shopping", icon: "🛍️" },
-];
+import Dropdown from "./ui/Dropdown.jsx";
 ---
 
-<nav class="sticky top-0 z-[100] bg-white shadow-md">
+<nav class="sticky top-0 z-[100] bg-white shadow-md relative">
+  <!-- Top Bar -->
   <div class="max-w-[1200px] mx-auto px-4 flex items-center justify-between h-[70px]">
-
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 font-bold text-base sm:text-lg text-orange-600">
+    <a
+      href="/"
+      class="flex items-center gap-2 font-bold text-base sm:text-lg text-orange-600"
+    >
       <span class="text-2xl">🏛️</span>
-      <span class="md:inline">Bangalore Tourism</span>
+      <span class="hidden md:inline">Bangalore Tourism</span>
     </a>
 
     <!-- Desktop Menu -->
     <div class="hidden md:flex items-center gap-8">
-
-      <!-- Home -->
       <a href="/" class="text-gray-700 hover:text-orange-600 transition">
         Home
       </a>
-
-      <!-- Featured (smooth scroll) -->
-      <a
-        href="/#featured"
-        class="text-gray-700 hover:text-orange-600 transition"
-      >
+      <a href="/#featured" class="text-gray-700 hover:text-orange-600 transition">
         Featured Attractions
       </a>
-
-      <!-- Map (smooth scroll) -->
-      <a
-        href="/#map"
-        class="text-gray-700 hover:text-orange-600 transition"
-      >
+      <a href="/#map" class="text-gray-700 hover:text-orange-600 transition">
         Explore Locations
       </a>
-
-      <!-- Places Dropdown -->
-      <div class="relative group">
-        <a
-          href="/places"
-          class="flex items-center gap-1 text-gray-700 hover:text-orange-600"
-        >
-          Places 
-          <span class="text-[10px]">▼</span>
-        </a>
-        <div
-          class="absolute right-0 mt-2 max-h-[260px] md:max-h-[300px]
-            overflow-y-auto min-w-[220px]
-            bg-white rounded-md shadow-lg p-2
-            opacity-0 invisible group-hover:opacity-100 group-hover:visible
-            transition-all duration-200"
-        >
-          {places.map(place => (
-            <a
-              href={`/place/${place.slug}`}
-              class="block px-3 py-2 rounded text-sm text-gray-700
-                hover:bg-gray-100 hover:text-orange-600"
-            >
-              {place.name}
-            </a>
-          ))}
-        </div>
-      </div>
-
+      <Dropdown client:load label="Places" href="/places" items={places} />
     </div>
 
     <!-- Mobile Button -->
     <button
-      class="md:hidden flex flex-col gap-1 p-2"
+      id="menuButton"
+      class="md:hidden relative w-10 h-10 flex items-center justify-center"
       aria-label="Toggle menu"
-      onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
+      aria-expanded="false"
     >
-      <span class="w-6 h-[2px] bg-gray-800 rounded"></span>
-      <span class="w-6 h-[2px] bg-gray-800 rounded"></span>
-      <span class="w-6 h-[2px] bg-gray-800 rounded"></span>
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
     </button>
-
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobileMenu"
-     class="hidden md:hidden bg-white border-t
-      px-4 py-3 space-y-2">
-
-    <a href="/" class="block px-3 py-2 rounded hover:bg-gray-100">
-      Home
-    </a>
-
-    <a href="/#featured" class="block px-3 py-2 rounded hover:bg-gray-100">
-      Featured Attractions
-    </a>
-
-    <a href="/#map" class="block px-3 py-2 rounded hover:bg-gray-100">
-      Explore Locations
-    </a>
-
-    <div class="pt-3 border-t">
-      <a
-        href="/places"
-        class="block px-3 py-2 font-semibold hover:bg-gray-100"
-      >
-        Places
+  <!-- Mobile Menu (ABSOLUTE & BELOW NAVBAR) -->
+   <div
+  id="mobileMenu"
+  class="md:hidden absolute top-full left-0 w-full
+         bg-white border-t shadow-lg overscroll-contain 
+         max-h-[calc(100vh-70px)] overflow-y-auto
+         opacity-0 -translate-y-2 pointer-events-none
+         transition-all duration-300 ease-out"
+>
+    <div class="px-4 py-3 space-y-2">
+      <a href="/" data-close-menu class="block px-3 py-2 rounded hover:bg-gray-100">
+        Home
+      </a>
+      <a href="/#featured" data-close-menu class="block px-3 py-2 rounded hover:bg-gray-100">
+        Featured Attractions
+      </a>
+      <a href="/#map" data-close-menu class="block px-3 py-2 rounded hover:bg-gray-100">
+        Explore Locations
       </a>
 
-      {places.map(place => (
-        <a
-          href={`/place/${place.slug}`}
-          class="block px-6 py-2 text-sm hover:bg-gray-100"
-        >
-          {place.name}
+      <div class="pt-3 border-t">
+        <a href="/places" data-close-menu class="block px-3 py-2 font-semibold hover:bg-gray-100">
+          Places
         </a>
-      ))}
+        {places.map(place => (
+          <a
+            href={`/place/${place.slug}`}
+            data-close-menu
+            class="block px-6 py-2 text-sm hover:bg-gray-100"
+          >
+            {place.name}
+          </a>
+        ))}
+      </div>
     </div>
-
   </div>
 </nav>
+<style>
+  .menu-line {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #1f2937;
+    border-radius: 9999px;
+    transition:
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s ease;
+  }
+
+  .menu-line:nth-child(1) {
+    transform: translateY(-7px);
+    transform-origin: 35% 50%;
+  }
+
+  .menu-line:nth-child(2) {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .menu-line:nth-child(3) {
+    transform: translateY(7px);
+    transform-origin: 35% 50%;
+  }
+
+  .menu-open .menu-line:nth-child(1) {
+    transform: rotate(45deg);
+  }
+
+  .menu-open .menu-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.5);
+  }
+
+  .menu-open .menu-line:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+</style>
+
+<script lang="ts">
+  const menu = document.getElementById("mobileMenu");
+  const button = document.getElementById("menuButton");
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menu?.classList.remove("opacity-0", "-translate-y-2", "pointer-events-none");
+    button?.classList.add("menu-open");
+    button?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu?.classList.add("opacity-0", "-translate-y-2", "pointer-events-none");
+    button?.classList.remove("menu-open");
+    button?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  button?.addEventListener("click", () => {
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  document.querySelectorAll("[data-close-menu]").forEach(el =>
+    el.addEventListener("click", closeMenu)
+  );
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768 && isOpen) closeMenu();
+  });
+</script>

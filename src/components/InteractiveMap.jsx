@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "./ui/Button.jsx";
 import Badge from "./ui/Badge.jsx";
 import { mapLocations } from "../data/mapLocations";
+import Modal from "./ui/Modal.jsx";
 
 const InteractiveMap = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -91,30 +92,18 @@ const InteractiveMap = () => {
           </Button>
         </div>
       )}
-
-      {/* Custom Modal */}
-      {modalLocation && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-white rounded-2xl p-6 max-w-sm w-full relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 className="text-xl font-bold mb-4">{modalLocation.name}</h3>
-            <p className="mb-6 text-gray-700">{modalLocation.description}</p>
-            <div className="flex justify-end gap-3">
-              <Button onClick={closeModal} variant="outline">
-                Cancel
-              </Button>
-              <Button onClick={goToMaps} variant="primary">
-                Open in Google Maps
-              </Button>
-            </div>
-          </div>
+      <Modal open={!!modalLocation} onClose={closeModal}>
+        <h3 className="text-xl font-bold mb-4">{modalLocation?.name}</h3>
+        <p className="mb-6 text-gray-700">{modalLocation?.description}</p>
+        <div className="flex justify-end gap-3">
+          <Button onClick={closeModal} variant="outline">
+            Cancel
+          </Button>
+          <Button onClick={goToMaps} variant="primary">
+            Open in Google Maps
+          </Button>
         </div>
-      )}
+      </Modal>
     </div>
   );
 };

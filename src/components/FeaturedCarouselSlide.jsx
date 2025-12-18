@@ -43,10 +43,11 @@ const FeaturedCarouselSlide = ({ item, offset, isCenter, isVisible }) => {
           <p className="mb-3 line-clamp-2 text-sm text-gray-200">
             {item.description}
           </p>
-
-          <Button size="sm" variant="secondary">
-            View Details
-          </Button>
+          {item.slug && (
+            <Button size="sm" variant="secondary">
+              View Details
+            </Button>
+          )}
         </div>
       </div>
     </div>

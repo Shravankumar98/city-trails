@@ -24,7 +24,7 @@ export const carouselItems = [
     id: 3,
     name: "Someshwara Temple",
     place: "Ulsoor",
-    image: "/someshwara-temple-bangalore-ancient-architecture.png",
+    image: "/someshwara-temple-bangalore-ancient-architecture.jpg",
     category: "temple",
     description: "Historic Chola-era Shiva temple",
   },
@@ -36,7 +36,6 @@ export const carouselItems = [
     place: "Lalbagh Road",
     image: "/masala-dosa-mtr-lalbagh.png",
     category: "food",
-    slug: "mtr-restaurant",
     description: "Legendary Masala Dosa since 1924",
   },
   {
