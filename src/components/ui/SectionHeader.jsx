@@ -1,8 +1,4 @@
-const SectionHeader = ({
-  title,
-  description,
-  align = "center" // "center", "left", "right"
-}) => {
+const SectionHeader = ({ title, description, align = "center" }) => {
   const textAlign = {
     center: "text-center",
     left: "text-left",

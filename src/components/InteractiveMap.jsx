@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Button from "./ui/Button.jsx";
 import Badge from "./ui/Badge.jsx";
-import { getRandomItems } from "../utils/random";
 import { mapLocations } from "../data/mapLocations";
 
-export default function InteractiveMap() {
+const InteractiveMap = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showAll, setShowAll] = useState(false);
   const [modalLocation, setModalLocation] = useState(null);
@@ -21,7 +20,7 @@ export default function InteractiveMap() {
     selectedCategory === "all"
       ? showAll
         ? mapLocations
-        : getRandomItems(mapLocations, 6)
+        : mapLocations.slice(0, 6)
       : mapLocations.filter((loc) => loc.category === selectedCategory);
 
   const openModal = (loc) => setModalLocation(loc);
@@ -34,7 +33,10 @@ export default function InteractiveMap() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4" style={{ backgroundColor: "var(--surface-map)" }}>
+    <div
+      className="mx-auto max-w-6xl px-4"
+      style={{ backgroundColor: "var(--surface-map)" }}
+    >
       {/* Filters */}
       <div className="mb-10 flex flex-wrap justify-center gap-3">
         {categories.map((cat) => {
@@ -115,4 +117,5 @@ export default function InteractiveMap() {
       )}
     </div>
   );
-}
+};
+export default InteractiveMap;

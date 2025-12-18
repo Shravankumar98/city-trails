@@ -17,8 +17,7 @@ const FeaturedCarousel = () => {
   const prev = () =>
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
 
-  const next = () =>
-    setCurrentIndex((prev) => (prev + 1) % items.length);
+  const next = () => setCurrentIndex((prev) => (prev + 1) % items.length);
 
   if (!items.length) return null;
 

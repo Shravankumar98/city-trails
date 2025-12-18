@@ -1,6 +1,6 @@
 // Carousel items showcasing popular attractions by category
 
-export const carouselItems= [
+export const carouselItems = [
   // Temples
   {
     id: 1,
@@ -121,4 +121,4 @@ export const carouselItems= [
     category: "theatre",
     description: "Classical music and cultural performances",
   },
-]
+];

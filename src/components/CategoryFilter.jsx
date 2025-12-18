@@ -1,17 +1,21 @@
 import { useState } from "react";
 import PlaceCard from "./PlaceCard";
 
-export default function CategoryFilter({ places = [] }) {
+const CategoryFilter = ({ places = [] }) => {
   const [category, setCategory] = useState("All");
 
-  const categories = ["All", ...Array.from(new Set(places.map(p => p.category)))];
+  const categories = [
+    "All",
+    ...Array.from(new Set(places.map((p) => p.category))),
+  ];
 
-  const filtered = category === "All" ? places : places.filter(p => p.category === category);
+  const filtered =
+    category === "All" ? places : places.filter((p) => p.category === category);
 
   return (
     <div>
       <div className="flex flex-wrap gap-3 mb-6 justify-center">
-        {categories.map(cat => (
+        {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setCategory(cat)}
@@ -27,10 +31,12 @@ export default function CategoryFilter({ places = [] }) {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map(place => (
+        {filtered.map((place) => (
           <PlaceCard key={place.slug} place={place} />
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default CategoryFilter;

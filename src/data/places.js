@@ -1,5 +1,3 @@
-
-
 export const places = [
   {
     id: 1,
@@ -131,4 +129,4 @@ export const places = [
     entryFee: "Free entry",
     mapLink: "https://maps.google.com/?q=UB+City+Mall+Bangalore",
   },
-]
+];
