@@ -12,7 +12,7 @@ const FeaturedCarousel = () => {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [items.length]);
+  }, [items.length, currentIndex]);
 
   const prev = () =>
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
@@ -27,18 +27,13 @@ const FeaturedCarousel = () => {
       <button
         onClick={prev}
         aria-label="Previous"
-        className="absolute left-4 top-1/2 z-20
-                   flex h-12 w-12 -translate-y-1/2
-                   items-center justify-center
-                   rounded-full bg-white/90 text-2xl
-                   shadow-lg transition
-                   hover:scale-110 hover:bg-white"
+        className="absolute left-4 carousel-nav-btn"
       >
         ‹
       </button>
 
       {/* Track */}
-      <div className="relative flex h-[500px] items-center justify-center">
+      <div className="relative flex h-[420px] md:h-[500px] items-center justify-center">
         {items.map((item, index) => {
           const total = items.length;
           let offset = index - currentIndex;
@@ -65,12 +60,7 @@ const FeaturedCarousel = () => {
       <button
         onClick={next}
         aria-label="Next"
-        className="absolute right-4 top-1/2 z-20
-                   flex h-12 w-12 -translate-y-1/2
-                   items-center justify-center
-                   rounded-full bg-white/90 text-2xl
-                   shadow-lg transition
-                   hover:scale-110 hover:bg-white"
+        className="absolute right-4 carousel-nav-btn        "
       >
         ›
       </button>

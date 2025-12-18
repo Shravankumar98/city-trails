@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
-
 :root {
   /* Brand identity */
-  --brand-primary: #1f4e79;   /* Government blue */
-  --brand-accent: #c58917;    /* Heritage gold */
+  --brand-primary: #1f4e79; /* Government blue */
+  --brand-accent: #c58917; /* Heritage gold */
   --brand-muted: #f5f7fa;
 
   /* Text */
@@ -18,22 +17,20 @@
   --radius-lg: 20px;
 
   /* Shadows */
-  --shadow-sm: 0 6px 18px rgba(0,0,0,0.08);
-  --shadow-md: 0 12px 30px rgba(0,0,0,0.12);
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.12);
 
   /* Spacing */
   --section-padding: 5rem;
-  
+
   /* Section surfaces (NEW) */
   --surface-hero-overlay: rgba(0, 0, 0, 0.6);
 
-  --surface-featured: #fff7ed;      /* warm heritage */
-  --surface-map: #f0f6fb;           /* civic blue tint */
-  --surface-places: #ffffff;        /* clean content */
+  --surface-featured: #fff7ed; /* warm heritage */
+  --surface-map: #f0f6fb; /* civic blue tint */
+  --surface-places: #ffffff; /* clean content */
   --surface-divider: #e5e7eb;
 }
-
-
 
 /* ===============================
    BASE STYLES
@@ -106,7 +103,34 @@ body {
   @apply rounded-full object-cover;
 }
 
-.avatar-sm { @apply w-8 h-8; }
-.avatar-md { @apply w-10 h-10; }
-.avatar-lg { @apply w-14 h-14; }
-.avatar-xl { @apply w-20 h-20; }
+.avatar-sm {
+  @apply w-8 h-8;
+}
+.avatar-md {
+  @apply w-10 h-10;
+}
+.avatar-lg {
+  @apply w-14 h-14;
+}
+.avatar-xl {
+  @apply w-20 h-20;
+}
+
+/* ===============================
+   Nav Button
+================================= */
+
+.carousel-nav-btn {
+  @apply top-1/2 z-20
+    flex  h-full w-8 -translate-y-1/2
+    items-center justify-center
+    opacity-0
+    rounded-full
+    bg-gray-600/40 text-white
+    shadow-lg transition
+    md:hover:scale-110
+    md:opacity-100
+    md:h-12 md:w-12
+    md:bg-white/90 md:text-gray-900
+    md:hover:bg-white;
+}
